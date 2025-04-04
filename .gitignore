@@ -1,0 +1,45 @@
+# OS별 임시 파일
+.DS_Store
+Thumbs.db
+
+# 환경 설정 파일
+.env
+
+# IDE/Editor 설정 파일
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# 컴파일 결과물이나 빌드 디렉토리
+dist/
+build/
+out/
+
+# 의존성 폴더
+node_modules/
+venv/
+.venv/
+
+# 캐시 파일
+.cache/
+__pycache__/
+*.py[cod]
+
+# 기타
+*.swp
+*.tmp
+
+# Docker 관련
+docker-compose.yaml
+.docker/
+**/Dockerfile.*
+
+# Docker 빌드 캐시나 출력물
+*.tar
+*.img
+*.container
+*.log
+
+# Docker volume mount로 생긴 파일
+tmp/

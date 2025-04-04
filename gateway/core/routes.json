@@ -1,0 +1,5 @@
+{
+    "/hello": "http://hello_service:8000",
+    "/bye": "http://bye_service:8000",
+    "/hello2": "http://hello2_service:8000"
+}
