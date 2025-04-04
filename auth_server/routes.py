@@ -8,8 +8,8 @@ async def verify(request: Request):
     if not api_key:
         raise HTTPException(status_code=400, detail="Missing API Key")
 
-    async with request.app.state.pool.acquire() as conn:
-        row = await conn.fetchrow("SELECT * FROM api_keys WHERE key = $1", api_key)
-        if row:
-            return {"valid": True}
-        raise HTTPException(status_code=401, detail="Invalid API Key")
+    redis = request.app.state.redis
+    cached = await redis.get(api_key)
+    if cached == "valid":
+        return {"valid": True}
+    raise HTTPException(status_code=401, detail="Invalid API Key")

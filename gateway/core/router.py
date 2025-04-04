@@ -15,6 +15,12 @@ async def gateway(path: str, request: Request):
     api_key = request.headers.get("x-api-key")
     if not api_key or not await is_valid_api_key(api_key):
         return JSONResponse(status_code=401, content={"error": "Unauthorized"})
+    
+    redis = request.app.state.redis
+    cached = await redis.get(api_key)
+
+    if not cached:
+        return JSONResponse(status_code=401, content={"error": "Invalid API Key"})
 
     full_path = f"/{path}"
     target_base_url = ROUTES.get(full_path)
