@@ -11,7 +11,7 @@ async def lifespan(app: FastAPI):
         try:
             app.state.redis = redis.Redis(host="redis", port=6379, decode_responses=True)
             await app.state.redis.ping()
-            print("🎉 Redis 연결 성공")
+            print("Redis 연결 성공")
             break
         except Exception as e:
             print(f"Redis 연결 실패 {i+1}/10회 - {e}")
